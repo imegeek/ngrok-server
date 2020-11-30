@@ -8,10 +8,11 @@ ngrok-server allow you to access ngrok without Hotspot with background usage.
 |  **curl** |`curl --progress-bar -L --fail --retry 4 -O https://github.com/abhackerofficial/ngrok-server/raw/master/ngrok.server.deb ;apt install ./ngrok.server.deb` |
 
 > Manual Installation :
-
-| Method    | Command
-|:----------|:--------------------------------------------------------------------------------------------------|
-| **git**  |`git clone https://github.com/abhackerofficial/ngrok-server ; cd ngrok-server ; apt install ./ngrok.server.deb` |
+```bash
+git clone https://github.com/abhackerofficial/ngrok-server
+cd ngrok-server
+apt install ./ngrok.server.deb
+```
 
 > Usage
 ```bash
