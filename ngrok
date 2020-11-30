@@ -1,0 +1,198 @@
+#!/usr/bin/bash
+
+c1="\e[0;1;92m"
+c2='\e[0;1;30m'
+c3='\e[0;1m'
+slp="sleep 0.03"
+
+HIDE(){ echo -en "\033[?25l";}
+NORM(){ echo -en "\033[?12l\033[?25h";}
+
+req() {
+command -v wget > /dev/null 2>&1 || { echo >&2 "I require wget but it's not installed, Now Installing."; apt install wget -y; connection="$(ping -c 1 -q www.google.com >&/dev/null; echo $?)"
+if [[ "$connection" != 0 ]]
+then clear
+echo -e "${red}[${green}-${red}] No Internet${green} connection!"
+   exit
+fi; }
+}
+
+banner() {
+echo -e "
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                         ┃
+┃  █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █ █    █▀▀ █▀▀ █▀▀█ ▀█ █▀ █▀▀ █▀▀█ ┃
+┃  █  █ █ ▀█ █▄▄▀ █  █ █▀▄ ▀▀ ▀▀█ █▀▀ █▄▄▀  █▄█  █▀▀ █▄▄▀ ┃
+┃  ▀  ▀ ▀▀▀▀ ▀ ▀▀ ▀▀▀▀ ▀ ▀    ▀▀▀ ▀▀▀ ▀ ▀▀   ▀   ▀▀▀ ▀ ▀▀ ┃
+┃  version - 1.6              coding - abhackerofficial   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+"
+}
+
+banner
+
+function progress_bar() {
+if [ ! -f "/data/data/com.termux/files/usr/share/ngrok" ];then
+HIDE
+echo -ne "\e[1;92m[\e[0m\e[1;77m+\e[1;92m] Downloading Ngrok...\e[0m\r"
+sleep 1
+while true ;do
+echo -ne "${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}             \r"
+$slp
+echo -ne "${c1}▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}        \r"
+$slp
+echo -ne "${c1}▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}        \r"
+$slp
+echo -ne "${c1}▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}        \r"
+$slp
+echo -ne "${c1}▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}        \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}        \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c2}▬${c3}         \r"
+$slp
+echo -ne "${c1}▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬${c3}              \r"
+if [ -f "/data/data/com.termux/files/usr/share/ngrok" ];then
+echo -ne "                                                \r"
+NORM
+break
+fi
+done
+fi
+}
+
+function ngrok_installer() {
+if [ ! -f "/data/data/com.termux/files/usr/share/ngrok" ];then
+cd /data/data/com.termux/files/usr/share
+wget --no-check-certificate https://bin.equinox.io/a/nmkK3DkqZEB/ngrok-2.2.8-linux-arm64.zip &> /dev/null
+unzip ngrok-2.2.8-linux-arm64.zip &> /dev/null
+chmod +x ngrok &> /dev/null
+rm -rf ngrok-2.2.8-linux-arm64.zip &> /dev/null
+echo -e "\e[1;92m[\e[0m\e[1;77m+\e[1;92m] Ngrok Download Successful...\e[0m\n"
+fi
+}
+
+net_check() {
+connection="$(ping -c 1 -q www.google.com &> /dev/null; echo $?)"
+if [[ "$connection" != 0 ]]
+then
+printf "\e[1;91m[!] Ngrok error, debug:\e[0m\e[1;77m ./ngrok http $port\e[0m\n"
+exit
+fi
+}
+
+stop() {
+if [[ $checkngrok == *'ngrok'* ]]; then
+pkill -f -2 ngrok > /dev/null 2>&1
+killall -2 ngrok > /dev/null 2>&1
+fi
+
+checkngrok=$(ps aux | grep -o "ngrok" | head -n1)
+checkphp=$(ps aux | grep -o "php" | head -n1)
+checkssh=$(ps aux | grep -o "ssh" | head -n1)
+if [[ $checkngrok == *'ngrok'* ]]; then
+pkill -f -2 ngrok > /dev/null 2>&1
+killall -2 ngrok > /dev/null 2>&1
+fi
+
+if [[ $checkphp == *'php'* ]]; then
+killall -2 php > /dev/null 2>&1
+fi
+if [[ $checkssh == *'ssh'* ]]; then
+killall -2 ssh > /dev/null 2>&1
+fi
+}
+
+if [[ "$1" == "-http" ]];then req
+trap '' SIGTSTP
+trap '' SIGINT
+progress_bar & ngrok_installer
+stop
+cd /data/data/com.termux/files/usr/share ;NORM
+./ngrok http $2 > /dev/null 2>&1 &
+http_ngrok() {
+link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "https://[0-9a-z]*\.ngrok.io")
+}
+printf "\e[1m[!] Connection Type: HTTP...\n"
+sleep 0.8
+printf "\e[1;92m[\e[0m\e[1;77m+\e[1;92m] Starting ngrok server \e[0m\e[1;97;101m(http $2)\e[0m\e[1m...\n"
+net_check
+http_ngrok
+if [[ -z $link ]];then
+printf "$link" &> /dev/null
+sleep 10
+http_ngrok
+printf "$link" &> /dev/null
+fi
+if [[ -z $link ]];then
+printf "\e[1;91m[!] Ngrok error, debug:\e[0m\e[1;77m ./ngrok http $2\e[0m\n"
+exit
+fi
+printf "\e[1;92m[\e[0m\e[1m+\e[1;92m] Share \e[0m\e[1;97;101mHTTPS\e[0m\e[1;92m link:\e[0m\e[1;77m %s\e[0m\n" $link
+echo
+
+elif [[ "$1" == "-tcp" ]];then req
+trap '' SIGTSTP
+trap '' SIGINT
+progress_bar & ngrok_installer
+stop
+cd /data/data/com.termux/files/usr/share ;NORM
+./ngrok tcp $2 > /dev/null 2>&1 &
+tcp_ngrok() {
+link=$(curl -s -N http://127.0.0.1:4040/api/tunnels | grep -o "tcp://[0-9]*\.tcp.ngrok.io:[0-9]*")
+}
+printf "\e[1m[!] Connection Type: TCP...\n"
+sleep 0.8
+printf "\e[1;92m[\e[0m\e[1;77m+\e[1;92m] Starting ngrok server \e[0m\e[1;97;101m(tcp $2)\e[0m\e[1m...\n"
+net_check
+tcp_ngrok
+if [[ -z $link ]];then
+printf "$link" &> /dev/null
+sleep 10
+tcp_ngrok
+printf "$link" &> /dev/null
+fi
+if [[ -z $link ]];then
+printf "\e[1;91m[!] Ngrok error, debug:\e[0m\e[1;77m ./ngrok tcp $2\e[0m\n"
+exit
+fi
+printf "\e[1;92m[\e[0m\e[1m+\e[1;92m] Share \e[0m\e[1;97;101mTCP\e[0m\e[1;92m link:\e[0m\e[1;77m %s\e[0m\n" $link
+echo
+else
+echo -e "\e[1;92m[\e[0m\e[1;77m+\e[1;92m] Input couldn't find..."
+fi
+
