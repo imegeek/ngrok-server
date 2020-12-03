@@ -1,7 +1,7 @@
 # ngrok-server
 ngrok-server allow you to access ngrok without Hotspot with background usage.
 
-![preview](https://user-images.githubusercontent.com/63346676/100619806-a80a3a00-3343-11eb-89bd-fc9fc47e36ad.jpg)
+![preview](https://user-images.githubusercontent.com/63346676/100966671-7962ae00-3553-11eb-95e7-c9e704478415.jpg)
 
 > Basic Installation :
 
